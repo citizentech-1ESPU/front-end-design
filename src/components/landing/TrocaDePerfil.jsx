@@ -13,6 +13,7 @@ const PERFIS = [
     titulo: 'Veja as caixas e anuncie',
     texto: 'Quando a caixa fica amarela, o anúncio já vem preenchido, com o prazo travado.',
     tela: '/telas/feirante.png',
+    altura: 1504,
     acao: 'Entrar como feirante',
     href: '/feirante',
   },
@@ -22,6 +23,7 @@ const PERFIS = [
     titulo: 'Reserve e retire na banca',
     texto: 'Xepa perto de você, com o selo de temperatura conferida e a hora de retirar.',
     tela: '/telas/xepa.png',
+    altura: 1306,
     acao: 'Ver a xepa de hoje',
     href: '/xepa',
   },
@@ -31,6 +33,7 @@ const PERFIS = [
     titulo: 'Combine a retirada da doação',
     texto: 'Peixe e queijo só aparecem para quem tem caixa térmica para levar.',
     tela: '/telas/ong.png',
+    altura: 1278,
     acao: 'Entrar como ONG',
     href: '/ong',
   },
@@ -80,8 +83,8 @@ export default function TrocaDePerfil() {
           hidden={comScript && i !== ativo}
           className="troca-painel"
         >
-          <div className="troca-tela" data-slot={`tela-${perfil.id}`} data-kind="product" data-alt={`Tela do perfil ${perfil.aba} no celular`}>
-            <img src={perfil.tela} alt={`Tela do site para ${perfil.aba.toLowerCase()}`} width="780" height="1688" loading="lazy" />
+          <div className="troca-tela" style={{ aspectRatio: `780 / ${perfil.altura}` }} data-slot={`tela-${perfil.id}`} data-kind="product" data-alt={`Tela do perfil ${perfil.aba} no celular`}>
+            <img src={perfil.tela} alt={`Tela do site para ${perfil.aba.toLowerCase()}`} width="780" height={perfil.altura} loading="lazy" />
           </div>
           <div className="troca-texto">
             <h3>{perfil.titulo}</h3>
