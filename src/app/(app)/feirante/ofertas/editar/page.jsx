@@ -11,7 +11,7 @@ import LoadingState from '@/components/ui/LoadingState';
 
 function Aviso({ texto }) {
   return (
-    <main className="flex flex-col gap-4 px-4 pb-10">
+    <main className="flex max-w-2xl flex-col gap-4 px-4 pb-10 pt-4 md:px-8">
       <p className="rounded-control border border-rule p-4 font-bold">{texto}</p>
       <Link href="/feirante/ofertas" className="flex min-h-11 items-center justify-center font-bold text-accent underline">
         Voltar para suas ofertas
@@ -31,7 +31,7 @@ function Formulario({ oferta }) {
   }
 
   return (
-    <main className="px-4 pb-10">
+    <main className="max-w-2xl px-4 pb-10 pt-4 md:px-8">
       <OfertaForm
         modo="editar"
         valores={form.valores}

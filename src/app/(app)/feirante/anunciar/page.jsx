@@ -44,7 +44,7 @@ function Anunciar() {
     return (
       <>
         <AppHeader titulo="Anunciar na xepa" subtitulo="Fruta, verdura e outros" voltarPara="/feirante" />
-        <main className="px-4 pb-10">
+        <main className="max-w-2xl px-4 pb-10 pt-4 md:px-8">
           <Formulario caixa={null} />
         </main>
       </>
@@ -61,7 +61,7 @@ function Anunciar() {
     return (
       <>
         <AppHeader titulo="Anunciar na xepa" voltarPara="/feirante" />
-        <main className="flex flex-col gap-4 px-4 pb-10">
+        <main className="flex max-w-2xl flex-col gap-4 px-4 pb-10 pt-4 md:px-8">
           <p className="rounded-control bg-bad-bg p-4 font-bold text-bad">{motivo}</p>
           <Link href="/feirante" className="flex min-h-11 items-center justify-center font-bold text-accent underline">
             Voltar para as caixas
@@ -78,7 +78,7 @@ function Anunciar() {
         subtitulo={`${caixa.nome}, ainda segura por ${formatarDuracao(caixa.minutosRestantes)}`}
         voltarPara="/feirante"
       />
-      <main className="px-4 pb-10">
+      <main className="max-w-2xl px-4 pb-10 pt-4 md:px-8">
         <Formulario caixa={caixa} />
       </main>
     </>

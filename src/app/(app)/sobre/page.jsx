@@ -19,7 +19,7 @@ export default function Sobre() {
   return (
     <>
       <AppHeader titulo="Sobre a Xepa Certa" subtitulo="CitizenTech da feira livre" voltarPara="/" />
-      <main className="flex flex-col gap-8 px-4 pb-10">
+      <main className="flex max-w-3xl flex-col gap-8 px-4 pb-10 pt-4 md:px-8">
         <Secao id="ficha" titulo="Ficha da CitizenTech">
           <dl className="flex flex-col gap-3 rounded-card bg-paper-2 p-4">
             {FICHA.map((item) => (
