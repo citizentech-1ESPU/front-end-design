@@ -121,12 +121,12 @@ src/
 public/
 ├── logo/                       a logo nas versões normal, branca e compacta
 ├── telas/                      capturas das telas reais, usadas na landing
-└── fotos/                      foto de feira (Wikimedia Commons, CC BY-SA 4.0)
+└── fotos/                      foto de peixe no gelo (Wikimedia Commons, CC BY-SA 3.0)
 ```
 
 ## Créditos
 
-Foto da landing: [Wilfredor](https://commons.wikimedia.org/wiki/File:Capsicum_baccatum_in_Sa%C3%BAde_flea_market,_S%C3%A3o_Paulo,_Brazil.jpg), CC BY-SA 4.0, Wikimedia Commons.
+Foto da landing: [MichaelMaggs](https://commons.wikimedia.org/wiki/File:Oweston_sting_fish_for_sale_at_Tsukiji_Fishmarket,_Tokyo-30.jpg), CC BY-SA 3.0, Wikimedia Commons.
 
 ## Equipe · time SafeTech
 

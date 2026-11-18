@@ -72,6 +72,6 @@ describe('Landing', () => {
 
   it('dá crédito à foto da feira no rodapé', () => {
     render(<Landing />);
-    expect(screen.getByRole('link', { name: 'Wilfredor' })).toHaveAttribute('href', expect.stringContaining('commons.wikimedia.org'));
+    expect(screen.getByRole('link', { name: 'MichaelMaggs' })).toHaveAttribute('href', expect.stringContaining('commons.wikimedia.org'));
   });
 });
