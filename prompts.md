@@ -82,6 +82,7 @@ Os prompts de cada sessão seguem o mesmo formato:
 | `setState` dentro de `useEffect` | `npm run lint` | troca por `useSyncExternalStore` |
 | Download das fotos recusado (erro 429) | download das fotos do Wikimedia | tamanhos padrão de miniatura e identificação do cliente |
 
+- **Revisão em contexto separado:** um agente novo, sem o histórico da conversa, revisou a página pelas instruções da Hallmark e pediu correções (veja a sessão de 18/11).
 - **Ainda falta conferir à mão:** Lighthouse, navegação só com teclado, leitor de tela (NVDA), zoom de 200% e o site no celular.
 
 ## 5. Análise crítica
@@ -93,7 +94,7 @@ Os prompts de cada sessão seguem o mesmo formato:
 - **Limitações:**
   - A IA escreveu o código e os testes, então Henrique precisa estudar cada parte para explicar na apresentação.
   - As ofertas foram conferidas com uma imitação do MockAPI, e não com o serviço real, cuja URL fica com a parte de Web.
-  - A revisão final em contexto separado, que a Hallmark recomenda, não foi feita.
+  - A revisão do hero antes do resto da página, que a Hallmark também recomenda, não foi feita; a revisão final apontou o que ela teria pego.
   - As conferências à mão ainda estão pendentes.
 - **Dificuldades:**
   - As fotos de categoria pareciam boa ideia até aparecerem ao lado de produtos que não eram os delas.
@@ -146,7 +147,7 @@ Os registros abaixo descrevem o prompt de cada etapa, o que a IA fez com o direc
 - **Prompt:** "Escolha na pasta da logo os arquivos que servem ao site, respeitando o tamanho mínimo do LEIA-ME. Busque na biblioteca da Hallmark fotos de feira com licença aberta, de preferência de São Paulo, com crédito. Capture as telas de feirante, freguês, ONG e do detalhe da oferta a partir do build de produção, com dados de demonstração."
 - **O que a IA fez com o direcionamento de Henrique:**
   - Usou a logo compacta (52 px) no cabeçalho, a logo com barbante no rodapé e o pacote de ícones.
-  - Achou uma foto de uma feira da Saúde, em São Paulo, e reduziu o tamanho dela para a web.
+  - Achou uma foto de uma feira da Saúde, em São Paulo, e reduziu o tamanho dela para a web. Depois da revisão final, ela foi trocada por peixe no gelo, mais perto do produto.
   - Capturou as quatro telas no tamanho de celular.
   - Testou fotos por categoria nos cartões de oferta, viu que não batiam com os produtos e as retirou.
 - **Como conferimos:** capturas abertas uma a uma, sem dado pessoal e sem o indicador do modo dev.
@@ -175,3 +176,23 @@ Os registros abaixo descrevem o prompt de cada etapa, o que a IA fez com o direc
 - **Prompt:** "Escreva o README do repositório com a Ficha da CitizenTech no topo, as telas, onde está cada requisito da disciplina, a identidade visual, a acessibilidade e a instalação. Diga que a camada de Web é de Daniel Gomes Torres. Depois escreva este `prompts.md` no formato do registro de Python da equipe."
 - **O que a IA fez com o direcionamento de Henrique:** escreveu o README e este registro.
 - **Como conferimos:** contagem de componentes e telas comparada com as pastas; números de testes conferidos com `npm test`. Revisão final de Henrique pendente.
+
+### 18/11 · Revisão final em contexto separado (Claude Code, agente de revisão)
+- **Prompt:** "Leia as instruções de revisão final da Hallmark (`review-finish.md`) e siga. Você não viu a construção da página. Receba as capturas da landing em 375, 1280, 1440 e 1920 px, as telas do app, o código da página e o selo do CSS. Responda com a primeira palavra do veredito e as correções, da mais cara para a mais barata, com arquivo e linha. Não altere nenhum arquivo."
+- **O que a IA fez com o direcionamento de Henrique:**
+  - O agente de revisão respondeu "fix" e apontou oito pontos. Os principais foram:
+    - a seção dos perfis fraca, com a tela estreita e cortada no meio de um cartão;
+    - a foto de pimentas, que não combina com uma solução para peixe;
+    - a logo repetida dentro das capturas;
+    - os botões do fecho com larguras diferentes;
+    - a tabela quebrando a 375 px;
+    - espaço vazio no painel das caixas;
+    - dois títulos genéricos.
+  - Henrique pediu para corrigir todos. A IA:
+    - recortou as telas abaixo do cabeçalho e num cartão inteiro, com um script próprio que esconde a barra de abas;
+    - trocou a foto por peixe no gelo;
+    - escreveu em cada caixa do painel o que fazer;
+    - igualou os botões do fecho;
+    - corrigiu a tabela no celular;
+    - trocou os títulos por "Feirante anuncia, freguês reserva, ONG retira" e "Abra no celular, ali na feira".
+- **Como conferimos:** `sloplint` de novo no navegador, sem falha; 227 testes passando; lint e build ok; página inteira vista a 1440 px.
