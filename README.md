@@ -66,7 +66,7 @@ A camada de regras, serviços e hooks (`src/domain`, `src/services`, `src/hooks`
 
 ## Componentes
 
-São 27, em `src/components/`. Todos só recebem props: não chamam API e não têm regra de negócio. Os dados chegam pelas telas, que chamam os hooks. A exceção são os dois componentes da landing que leem o perfil e as caixas ao vivo.
+São 27, em `src/components/`. Todos só recebem props: não chamam API e não têm regra de negócio. Os dados chegam pelas telas, que chamam os hooks. A exceção são dois componentes da landing: `EntrarComo` guarda o perfil (`usePerfil`) e `PainelDeCaixas` lê as caixas ao vivo (`useCaixas`).
 
 **`ui/` · base e retorno**
 
