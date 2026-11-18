@@ -12,6 +12,7 @@ A camada de regras, serviços e hooks (`src/domain`, `src/services`, `src/hooks`
   - buscam fotos com licença aberta;
   - capturam as telas reais do site;
   - verificam a página no navegador, em larguras de 375 a 1920 px (`sloplint`).
+- **Claude in Chrome** (extensão do Claude para o navegador): a IA operou o Chrome para percorrer o CRUD no site publicado, com o MockAPI real.
 - **Como foi o pair programming:** Henrique definiu o problema ("o front não apresenta a solução"), as restrições (manter as cores dos estados da caixa, o tom de voz e as telas) e o material (a logo nova e fotos de feira com licença aberta). A IA propôs o plano, implementou e verificou. As decisões de Henrique estão na seção 2; as sugestões da IA ficam para a revisão dele. A revisão manual completa de Henrique ainda está pendente, por isso este registro não afirma que ele conferiu cada linha.
 
 ## 2. Prompts, decisões e direcionamento
@@ -60,12 +61,14 @@ Os prompts de cada sessão seguem o mesmo formato:
 
 ## 4. Como verificamos, testamos e ajustamos
 
-- **Testes automáticos:** 227 testes passando (Vitest e Testing Library), incluindo 7 testes novos da landing. Eles cobrem o único `h1`, as ações do hero, as quatro caixas, os estados de carregando e erro, a tabela da regra, a gravação do perfil e as abas com as setas do teclado.
+- **Testes automáticos:** 230 testes passando (Vitest e Testing Library), incluindo 7 testes da landing e 3 do piscar da etiqueta. Eles cobrem o único `h1`, as ações do hero, as quatro caixas, os estados de carregando e erro, a tabela da regra, a gravação do perfil e as abas com as setas do teclado.
 - **Lint e build:** `npm run lint` sem erro e `npm run build` gerando a landing e as onze rotas estáticas.
 - **No navegador:**
   - o site rodou com uma imitação local do MockAPI, fora do repositório, e com as seis ofertas de demonstração;
   - a caixa 1 leu o ThingSpeak de verdade (canal 3571880);
-  - as capturas das telas foram feitas a partir do build de produção.
+  - as capturas das telas foram feitas a partir do build de produção;
+  - no site publicado, com o MockAPI real da equipe: criar, reservar, editar e cancelar, cada operação conferida direto na API.
+- **Lighthouse (celular, Acessibilidade):** 100 nas seis telas do plano, depois da correção do piscar (antes, 97 e 96). Detalhes em `docs/acessibilidade.md`.
 - **Verificação de design (`sloplint` da Hallmark):** a landing e as telas foram abertas no navegador a 375, 1280, 1440 e 1920 px. Resultado final: nenhuma falha nas regras fixas e nenhuma regra de reflexo em aberto. Duas regras ficaram dispensadas, com o motivo registrado no CSS: a altura do cartão de oferta, que é um botão grande de propósito, e o estado desativado do cartão da caixa.
 - **Erros e ajustes:**
 
@@ -81,9 +84,11 @@ Os prompts de cada sessão seguem o mesmo formato:
 | Testes esperando "Banca Mar Azul · 350 m" | `npm test` | texto e testes passaram para "Banca Mar Azul, a 350 m" |
 | `setState` dentro de `useEffect` | `npm run lint` | troca por `useSyncExternalStore` |
 | Download das fotos recusado (erro 429) | download das fotos do Wikimedia | tamanhos padrão de miniatura e identificação do cliente |
+| "Complete o gelo" ilegível no meio do piscar (contraste 1,5:1) | Lighthouse no site publicado | só um ponto de LED pisca; o texto fica firme |
+| Print de 360 px saindo cortado | Chrome sem interface no Windows, que não abre janela tão estreita | prints refeitos com emulação de celular do Chrome |
 
 - **Revisão em contexto separado:** um agente novo, sem o histórico da conversa, revisou a página pelas instruções da Hallmark e pediu correções (veja a sessão de 18/11).
-- **Ainda falta conferir à mão:** Lighthouse, navegação só com teclado, leitor de tela (NVDA), zoom de 200% e o site no celular.
+- **Ainda falta conferir à mão:** navegação só com teclado, leitor de tela (NVDA), zoom de 200% e o site no celular de verdade.
 
 ## 5. Análise crítica
 
@@ -93,7 +98,6 @@ Os prompts de cada sessão seguem o mesmo formato:
   - Dividir o trabalho em sessões curtas deixou cada erro preso a uma etapa.
 - **Limitações:**
   - A IA escreveu o código e os testes, então Henrique precisa estudar cada parte para explicar na apresentação.
-  - As ofertas foram conferidas com uma imitação do MockAPI, e não com o serviço real, cuja URL fica com a parte de Web.
   - A revisão do hero antes do resto da página, que a Hallmark também recomenda, não foi feita; a revisão final apontou o que ela teria pego.
   - As conferências à mão ainda estão pendentes.
 - **Dificuldades:**
@@ -214,3 +218,12 @@ Os registros abaixo descrevem o prompt de cada etapa, o que a IA fez com o direc
   - Refez a captura da tela do freguês sem a linha de filtros cortada.
 - **Como conferimos:** nenhuma rolagem para o lado em nenhuma largura; capturas em 375, 1024 e 1440 px vistas uma a uma; 227 testes passando; `sloplint` sem falha.
 
+### 18/11 · Publicação, CRUD real e acessibilidade (Claude Code e Claude in Chrome)
+- **Prompt:** "Publique o site com a URL do MockAPI da equipe e confira, no site publicado, cada operação do CRUD direto na API. Depois rode o Lighthouse (celular, Acessibilidade) nas seis telas do plano, com meta de 95 ou mais, e tire prints de 360 x 740 das 11 telas, medindo se alguma rola para o lado. Não apague dados da equipe; o que for criado no teste volta ao estado de antes."
+- **O que a IA fez com o direcionamento de Henrique:**
+  - Levou a URL do MockAPI para o build (`.env.production`) e publicou o site na Vercel, na conta de Henrique.
+  - As ofertas de demonstração tinham vencido. A IA recriou as seis pelo botão do próprio site, que só cria e não apaga nada.
+  - No site publicado, reservou um item, editou uma oferta e cancelou a reserva, conferindo cada passo na API. Depois voltou a quantidade da oferta ao valor original.
+  - Rodou o Lighthouse: 97 na landing, 96 em "Suas caixas" e 100 nas outras quatro. Mostrou que a causa era a etiqueta "Complete o gelo", que piscava inteira e ficava ilegível no meio do piscar. Escreveu o teste, fez só o ponto de LED piscar e publicou de novo: 100 nas seis.
+  - Tirou os 11 prints com emulação de celular e escreveu `docs/acessibilidade.md`, a seção "Componentes" do README e a atualização do `AI.md`.
+- **Como conferimos:** 230 testes passando; lint limpo; Lighthouse refeito no site publicado; largura de 360 px medida em cada tela; com movimento reduzido, o ponto de LED para (`animation: none`); a API sem reserva de teste sobrando no fim.
