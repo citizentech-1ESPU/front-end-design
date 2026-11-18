@@ -74,7 +74,7 @@ export default function Doacoes() {
     );
   } else {
     conteudo = (
-      <ul className="flex flex-col gap-4">
+      <ul className="grid items-start gap-4 md:grid-cols-2 xl:grid-cols-3">
         {ofertas.map((oferta) => (
           <li key={oferta.id} className="flex flex-col gap-2">
             <OfferCard oferta={oferta} disponivel={oferta.disponivel} onClick={() => abrir(oferta)} />
@@ -114,8 +114,8 @@ export default function Doacoes() {
   return (
     <>
       <AppHeader titulo="Doações para retirar" subtitulo="Feira da Av. Eng. Caetano Álvares, hoje" />
-      <main className="flex flex-col gap-4 px-4 pb-24">
-        <div className="flex flex-col gap-1 rounded-card bg-paper-2 p-4">
+      <main className="flex flex-col gap-4 px-4 pb-24 pt-4 md:px-8 md:pb-12">
+        <div className="flex flex-col gap-1 rounded-card bg-paper-2 p-4 md:max-w-md">
           <Toggle id="caixaTermica" rotulo="Temos caixa térmica" ligado={temCaixaTermica} onChange={definirCaixaTermica} />
           <p className="text-sm text-muted">
             {temCaixaTermica ? 'Com caixa térmica: peixe e queijo liberados' : 'Sem caixa térmica: só frutas e verduras'}
