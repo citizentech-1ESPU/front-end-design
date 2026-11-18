@@ -16,7 +16,7 @@ export default function SuasCaixas() {
   return (
     <>
       <AppHeader titulo="Suas caixas" subtitulo="Banca Mar Azul, feira da Av. Eng. Caetano Álvares" />
-      <main className="flex flex-col gap-4 px-4 pb-24">
+      <main className="flex flex-col gap-4 px-4 pb-24 pt-4 md:px-8 md:pb-12">
         {atualizadoEm && (
           <p role="status" className="text-sm text-muted">
             {`Atualizado às ${formatarHora(atualizadoEm)}`}
@@ -27,14 +27,18 @@ export default function SuasCaixas() {
         {carregando ? (
           <LoadingState />
         ) : (
-          caixas.map((caixa) => (
-            <BoxCard key={caixa.id} caixa={caixa} onAnunciar={(id) => router.push(`/feirante/anunciar?caixa=${id}`)} />
-          ))
+          <div className="grid items-start gap-4 md:grid-cols-2">
+            {caixas.map((caixa) => (
+              <BoxCard key={caixa.id} caixa={caixa} onAnunciar={(id) => router.push(`/feirante/anunciar?caixa=${id}`)} />
+            ))}
+          </div>
         )}
 
-        <Button variante="secundario" href="/feirante/anunciar">
-          Anunciar fruta ou verdura
-        </Button>
+        <div className="md:max-w-sm">
+          <Button variante="secundario" href="/feirante/anunciar">
+            Anunciar fruta ou verdura
+          </Button>
+        </div>
       </main>
       <BottomNav perfil="feirante" ativa="caixas" />
     </>

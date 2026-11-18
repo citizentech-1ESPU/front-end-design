@@ -108,15 +108,19 @@ function SuasOfertas() {
   } else if (lista.length === 0) {
     conteudo = <EmptyState mensagem={aba === 'ativas' ? 'Nenhuma oferta ativa agora.' : 'Nenhuma oferta encerrada.'} />;
   } else {
-    conteudo = lista.map((oferta) => (
-      <CartaoDaOferta key={oferta.id} oferta={oferta} onEncerrar={encerrarOferta} onExcluir={setParaExcluir} />
-    ));
+    conteudo = (
+      <div className="grid items-start gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {lista.map((oferta) => (
+          <CartaoDaOferta key={oferta.id} oferta={oferta} onEncerrar={encerrarOferta} onExcluir={setParaExcluir} />
+        ))}
+      </div>
+    );
   }
 
   return (
     <>
       <AppHeader titulo="Suas ofertas" subtitulo="Banca Mar Azul" />
-      <main className="flex flex-col gap-4 px-4 pb-24">
+      <main className="flex flex-col gap-4 px-4 pb-24 pt-4 md:px-8 md:pb-12">
         <FilterChips
           opcoes={[
             { valor: 'ativas', rotulo: `Ativas (${ativas.length})` },
