@@ -42,6 +42,12 @@ Site da Xepa Certa, do time SafeTech, para a Global Solution 2026.2 da FIAP (Cit
 | `/ong` | ONG | doações para retirar e retirada combinada |
 | `/ong/retiradas` | ONG | Minhas retiradas |
 
+Prints em 360 px (celular) de cada perfil. Os das 11 rotas estão em [`docs/prints/`](docs/prints/).
+
+| Feirante | Freguês | ONG |
+|---|---|---|
+| <img src="docs/prints/03-feirante-caixas.png" alt="Suas caixas no celular" width="220"> | <img src="docs/prints/07-fregues-xepa.png" alt="Xepa perto de você no celular" width="220"> | <img src="docs/prints/10-ong-doacoes.png" alt="Doações para retirar no celular" width="220"> |
+
 ## Requisitos da disciplina (Front-end Design)
 
 | Requisito | Onde está |
