@@ -1,0 +1,135 @@
+/* Hallmark · shape: product page led by the live boxes (draw 96886a; Marquee Hero swapped, a feira precisa entender a ideia em segundos) · genre: editorial · theme: brand · redesign: full · job: try · draw: 96886a
+ * paper: oklch(96.4% 0.007 89) · accent: oklch(42.3% 0.111 255) · display: Archivo 800 · body: Atkinson Hyperlegible · hero: Stage · nav: floating pill · footer: letter close · signature: as quatro caixas da banca ao vivo no hero, a caixa 1 lida do ThingSpeak, com a plaquinha amarela de Hora da xepa
+ * axes: light/grotesk-heavy/cool · posture: restrained (verde, amarelo e vermelho são os estados da caixa, não acento) · imagery: screenshots 4 (capture.mjs), library 1 · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V4 · weakest: P, a página explica em vez de discutir; a fala do feirante e a regra das 2h e 4h carregam o argumento */
+/* Hallmark · dismissed 28a · o LCP é o título e o painel das caixas; a tela do switcher fica abaixo da dobra e pode carregar depois */
+
+.lp { background: var(--color-paper); color: var(--color-ink); }
+
+/* Pular para o conteúdo: aparece só no foco do teclado */
+.pular { position: absolute; left: var(--space-md); top: calc(-1 * var(--space-4xl)); z-index: var(--z-tooltip); padding: var(--space-xs) var(--space-md); background: var(--color-ink); color: var(--color-paper); border-radius: var(--radius-control); }
+.pular:focus-visible { top: var(--space-md); }
+
+/* Botões da landing: um primário, os outros contornados */
+.botao { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding-inline: var(--space-lg); border: 2px solid var(--color-accent); border-radius: var(--radius-control); font-family: var(--font-body); font-size: var(--text-md); font-weight: 700; line-height: 1.2; text-decoration: none; white-space: nowrap; cursor: pointer; transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out); }
+.botao-primario { background: var(--color-accent); color: var(--color-accent-ink); }
+.botao-primario:hover, .botao-primario:active { background: var(--color-accent-hover); border-color: var(--color-accent-hover); }
+.botao-secundario { background: transparent; color: var(--color-accent); }
+.botao-secundario:hover, .botao-secundario:active { background: var(--color-accent-wash); }
+.botao:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+.botao:disabled, .botao[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; }
+.botao-nav { min-height: 44px; }
+
+/* Menu: pílula flutuante */
+.lp-nav { position: sticky; top: var(--space-sm); z-index: var(--z-sticky-nav); padding-inline: var(--gutter); }
+.lp-pilula { display: flex; align-items: center; justify-content: space-between; gap: var(--space-lg); max-width: 56rem; margin-inline: auto; padding: var(--space-xs) var(--space-xs) var(--space-xs) var(--space-md); background: var(--color-paper); border: var(--rule-hair) solid var(--color-rule); border-radius: var(--radius-pill); }
+.lp-marca { display: inline-flex; border-radius: var(--radius-control); }
+.lp-marca:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.lp-links { display: flex; gap: var(--space-lg); margin: 0 0 0 auto; padding: 0; list-style: none; }
+.lp-links a { font-size: var(--text-sm); font-weight: 700; text-decoration: none; color: var(--color-ink-2); }
+.lp-links a:hover { color: var(--color-accent); text-decoration: underline; }
+.lp-links a:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; border-radius: var(--radius-control); }
+
+/* Hero: texto em cinco colunas, as caixas ao vivo em sete */
+.lp-hero { display: flex; align-items: center; min-height: calc(100dvh - var(--space-3xl)); padding-block: var(--space-xl) var(--space-2xl); }
+.lp-hero-grade { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-3xl); align-items: center; }
+.lp-hero-texto { display: flex; flex-direction: column; gap: var(--space-lg); }
+.lp-hero h1 { font-size: var(--text-display); line-height: 1.02; max-width: 12ch; text-wrap: balance; }
+.lp-secao h2 { text-wrap: balance; }
+.lp-acoes { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-top: var(--space-xs); }
+
+/* O painel das caixas: um poço, as caixas separadas por fios */
+.painel { margin: 0; padding: var(--space-lg); background: var(--color-paper-2); border-radius: var(--radius-card); }
+.painel-lista { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; }
+.painel-caixa { display: flex; flex-direction: column; gap: var(--space-sm); min-height: 15rem; padding: var(--space-lg); border-bottom: var(--rule-hair) solid var(--color-rule); }
+.painel-caixa:nth-child(odd) { border-right: var(--rule-hair) solid var(--color-rule); }
+.painel-caixa:nth-last-child(-n + 2) { border-bottom: 0; }
+.painel-topo { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-xs); }
+.painel-nome { font-family: var(--font-display); font-weight: 800; font-size: var(--text-lg); }
+.painel-temp { font-family: var(--font-display); font-weight: 800; font-size: var(--text-3xl); line-height: 1; letter-spacing: var(--tracking-display); }
+.painel-aviso { grid-column: 1 / -1; padding: var(--space-xl); color: var(--color-muted); font-weight: 700; }
+.painel-legenda { margin-top: var(--space-md); padding-inline: var(--space-lg); font-size: var(--text-sm); color: var(--color-muted); }
+
+/* Seções */
+.lp-secao { border-top: var(--rule-hair) solid var(--color-rule); }
+.lp-antes { padding-block: var(--section-gap-s); }
+.lp-perfis { padding-block: var(--section-gap); }
+.lp-fala { padding-block: var(--section-gap-s); }
+.lp-regra { padding-block: var(--section-gap-l); }
+.lp-fecho { padding-block: var(--section-gap); }
+.lp-secao h2 { margin-bottom: var(--space-2xl); }
+.lp-cabeca { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: var(--gap-columns); align-items: end; margin-bottom: var(--space-2xl); }
+.lp-cabeca h2 { margin-bottom: 0; }
+
+/* Tabelas: fios na horizontal, sem moldura */
+.lp-tabela-antes, .lp-tabela-regra { width: 100%; border-collapse: collapse; }
+.lp-tabela-antes th, .lp-tabela-antes td, .lp-tabela-regra th, .lp-tabela-regra td { padding: var(--space-md) var(--space-lg) var(--space-md) 0; border-top: var(--rule-hair) solid var(--color-rule); text-align: left; vertical-align: top; }
+.lp-tabela-antes thead th, .lp-tabela-regra thead th { border-top: 0; padding-bottom: var(--space-sm); font-size: var(--text-sm); font-weight: 700; color: var(--color-muted); white-space: nowrap; }
+.lp-tabela-antes tbody th { width: 16%; font-family: var(--font-display); font-weight: 800; font-size: var(--text-lg); }
+.lp-tabela-antes td { width: 42%; font-size: var(--text-lg); line-height: 1.4; }
+.lp-tabela-antes td:first-of-type { color: var(--color-ink-2); }
+.lp-tabela-antes td:last-of-type { font-weight: 700; }
+.lp-tabela-regra tbody th { width: 22%; }
+.lp-tabela-regra td { font-size: var(--text-md); }
+.lp-tabela-regra td:last-child { font-weight: 700; }
+.lp-fonte { margin-top: var(--space-lg); font-size: var(--text-sm); color: var(--color-muted); max-width: 65ch; }
+
+/* Troca de perfil: abas e a tela de verdade */
+.troca-abas { display: inline-flex; gap: var(--space-2xs); margin-bottom: var(--space-xl); padding: var(--space-2xs); background: var(--color-paper-2); border-radius: var(--radius-pill); }
+.troca-aba { min-height: 44px; padding-inline: var(--space-lg); border: 0; border-radius: var(--radius-pill); background: transparent; color: var(--color-ink-2); font-weight: 700; cursor: pointer; transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out); }
+.troca-aba:hover { color: var(--color-accent); }
+.troca-aba[aria-selected="true"] { background: var(--color-ink); color: var(--color-paper); }
+.troca-aba:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.troca-painel { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-3xl); align-items: center; }
+.troca-painel + .troca-painel { margin-top: var(--space-3xl); }
+.troca-tela, .lp-fecho-tela { position: relative; aspect-ratio: 9 / 13; max-height: 40rem; border-radius: var(--radius-card); outline: var(--rule-hair) solid var(--color-rule); outline-offset: -1px; }
+.troca-tela > img, .lp-fecho-tela > img { object-position: 50% 0; }
+.troca-texto { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-md); max-width: 30rem; }
+.troca-texto h3 { font-size: var(--text-2xl); }
+.troca-texto p { font-size: var(--text-lead); line-height: 1.45; }
+
+/* A fala do feirante, ao lado de uma feira de São Paulo */
+.lp-fala-grade { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--space-3xl); align-items: center; }
+.lp-foto { margin: 0; aspect-ratio: 5 / 4; border-radius: var(--radius-card); }
+.lp-citacao { margin: 0; display: flex; flex-direction: column; gap: var(--space-lg); }
+.lp-citacao p { font-family: var(--font-display); font-weight: 800; font-size: var(--text-2xl); line-height: 1.2; letter-spacing: var(--tracking-display); text-indent: -0.4em; text-wrap: balance; }
+.lp-citacao footer { font-size: var(--text-sm); color: var(--color-muted); max-width: 40ch; }
+
+/* Fecho: as três entradas ao lado de uma última tela */
+.lp-fecho-grade { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: var(--space-3xl); align-items: center; }
+.lp-fecho-texto { display: flex; flex-direction: column; gap: var(--space-lg); }
+.lp-fecho-texto h2 { margin-bottom: 0; }
+.lp-entradas { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-sm); margin: var(--space-md) 0 0; padding: 0; list-style: none; }
+
+/* Rodapé em forma de carta */
+.lp-rodape { padding-block: var(--space-3xl); border-top: var(--rule-hair) solid var(--color-rule); }
+.lp-rodape-grade { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-2xl); align-items: start; }
+.lp-rodape-logo { width: 141px; height: auto; }
+.lp-assinatura { font-family: var(--font-display); font-weight: 800; font-size: var(--text-xl); line-height: 1.3; max-width: 36ch; }
+.lp-equipe { margin-top: var(--space-sm); color: var(--color-ink-2); }
+.lp-rodape-links { display: flex; flex-wrap: wrap; gap: var(--space-lg); margin-top: var(--space-lg); font-weight: 700; }
+.lp-rodape-links a:hover { color: var(--color-accent); }
+.lp-rodape-links a:focus-visible, .lp-creditos a:focus-visible, .lp-citacao a:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.lp-creditos { margin-top: var(--space-lg); font-size: var(--text-sm); color: var(--color-muted); }
+
+/* Até 60rem tudo vira uma coluna, na ordem de leitura */
+@media (max-width: 60rem) {
+  .lp-links { display: none; }
+  .lp-hero { min-height: 0; padding-block: var(--space-xl) var(--space-2xl); }
+  .lp-hero-grade, .troca-painel, .lp-fala-grade, .lp-fecho-grade, .lp-cabeca { grid-template-columns: minmax(0, 1fr); gap: var(--space-xl); }
+  .troca-tela, .lp-fecho-tela { max-height: 32rem; }
+  .lp-tabela-antes thead { display: none; }
+  .lp-tabela-antes tr { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2xs); padding-block: var(--space-md); border-top: var(--rule-hair) solid var(--color-rule); }
+  .lp-tabela-antes th, .lp-tabela-antes td { width: auto; padding: 0; border-top: 0; }
+  .lp-tabela-regra thead { display: none; }
+  .lp-tabela-regra tr { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2xs); padding-block: var(--space-md); border-top: var(--rule-hair) solid var(--color-rule); }
+  .lp-tabela-regra th, .lp-tabela-regra td { width: auto; padding: 0; border-top: 0; }
+  .lp-rodape-grade { grid-template-columns: minmax(0, 1fr); }
+  .lp-citacao p { text-indent: 0; }
+}
+@media (max-width: 40rem) {
+  .painel { padding: var(--space-xs); }
+  .painel-lista { grid-template-columns: minmax(0, 1fr); }
+  .painel-caixa { min-height: 0; border-right: 0 !important; border-bottom: var(--rule-hair) solid var(--color-rule) !important; }
+  .painel-caixa:last-child { border-bottom: 0 !important; }
+}
