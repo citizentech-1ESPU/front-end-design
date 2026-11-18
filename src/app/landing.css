@@ -44,7 +44,7 @@
 .painel-caixa { display: flex; flex-direction: column; gap: var(--space-sm); padding: var(--space-lg); border-bottom: var(--rule-hair) solid var(--color-rule); }
 .painel-caixa:nth-child(odd) { border-right: var(--rule-hair) solid var(--color-rule); }
 .painel-caixa:nth-last-child(-n + 2) { border-bottom: 0; }
-.painel-topo { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-xs); }
+.painel-topo { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: var(--space-xs); }
 .painel-nome { font-family: var(--font-display); font-weight: 800; font-size: var(--text-lg); }
 .painel-temp { font-family: var(--font-display); font-weight: 800; font-size: var(--text-3xl); line-height: 1; letter-spacing: var(--tracking-display); }
 .painel-acao { margin-top: auto; font-weight: 700; }
@@ -66,7 +66,7 @@
 .lp-tabela-antes, .lp-tabela-regra { width: 100%; border-collapse: collapse; }
 .lp-tabela-antes th, .lp-tabela-antes td, .lp-tabela-regra th, .lp-tabela-regra td { padding: var(--space-md) var(--space-lg) var(--space-md) 0; border-top: var(--rule-hair) solid var(--color-rule); text-align: left; vertical-align: top; }
 .lp-tabela-antes thead th, .lp-tabela-regra thead th { border-top: 0; padding-bottom: var(--space-sm); font-size: var(--text-sm); font-weight: 700; color: var(--color-muted); white-space: nowrap; }
-.lp-tabela-antes tbody th { width: 16%; font-family: var(--font-display); font-weight: 800; font-size: var(--text-lg); }
+.lp-tabela-antes tbody th { width: 16%; white-space: nowrap; font-family: var(--font-display); font-weight: 800; font-size: var(--text-lg); }
 .lp-tabela-antes td { width: 42%; font-size: var(--text-lg); line-height: 1.4; }
 .lp-tabela-antes td:first-of-type { color: var(--color-ink-2); }
 .lp-tabela-antes td:last-of-type { font-weight: 700; }
@@ -120,18 +120,26 @@
   .lp-links { display: none; }
   .lp-hero { min-height: 0; padding-block: var(--space-xl) var(--space-2xl); }
   .lp-hero-grade, .troca-painel, .lp-fala-grade, .lp-fecho-grade, .lp-cabeca { grid-template-columns: minmax(0, 1fr); gap: var(--space-xl); }
-  .lp-tabela-antes thead { display: none; }
-  .lp-tabela-antes tr { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2xs); padding-block: var(--space-md); border-top: var(--rule-hair) solid var(--color-rule); }
-  .lp-tabela-antes th, .lp-tabela-antes td, .lp-tabela-antes tbody th, .lp-tabela-antes td:first-of-type, .lp-tabela-antes td:last-of-type { width: auto; padding: 0; border-top: 0; }
-  .lp-tabela-regra thead { display: none; }
-  .lp-tabela-regra tr { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2xs); padding-block: var(--space-md); border-top: var(--rule-hair) solid var(--color-rule); }
-  .lp-tabela-regra th, .lp-tabela-regra td, .lp-tabela-regra tbody th { width: auto; padding: 0; border-top: 0; }
+  .lp-tabela-antes td, .lp-tabela-regra td { font-size: var(--text-md); }
+  .lp-foto { aspect-ratio: 4 / 3; }
+  .troca-tela, .lp-fecho-tela { max-width: 22rem; }
   .troca-tela, .lp-fecho-tela { justify-self: start; }
   .troca-texto { padding-top: 0; }
   .lp-rodape-grade { grid-template-columns: minmax(0, 1fr); }
   .lp-citacao p { text-indent: 0; }
 }
+/* No notebook pequeno, o hero divide a largura ao meio para o painel respirar */
+@media (min-width: 60.01rem) and (max-width: 80rem) {
+  .lp-hero-grade { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-2xl); }
+  .painel-caixa { padding: var(--space-md); }
+}
 @media (max-width: 40rem) {
+  .lp-acoes .botao { flex: 1 1 100%; }
+  .lp-entradas { width: 100%; }
+  .lp-tabela-antes thead, .lp-tabela-regra thead { display: none; }
+  .lp-tabela-antes tr, .lp-tabela-regra tr { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2xs); padding-block: var(--space-md); border-top: var(--rule-hair) solid var(--color-rule); }
+  .lp-tabela-antes th, .lp-tabela-antes td, .lp-tabela-antes tbody th, .lp-tabela-antes td:first-of-type, .lp-tabela-antes td:last-of-type,
+  .lp-tabela-regra th, .lp-tabela-regra td, .lp-tabela-regra tbody th { width: auto; padding: 0; border-top: 0; }
   .painel { padding: var(--space-xs); }
   .painel-lista { grid-template-columns: minmax(0, 1fr); }
   .painel-caixa { min-height: 0; border-right: 0 !important; border-bottom: var(--rule-hair) solid var(--color-rule) !important; }
