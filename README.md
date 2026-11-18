@@ -4,6 +4,8 @@
 
 Site da Xepa Certa, do time SafeTech, para a Global Solution 2026.2 da FIAP (CitizenTech). Uma landing apresenta a solução, e onze telas atendem quem usa: o feirante, o freguês e as ONGs.
 
+**Site publicado:** https://xepa-certa-front.vercel.app
+
 ## Ficha da CitizenTech
 
 | Campo | Conteúdo |

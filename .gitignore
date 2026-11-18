@@ -44,3 +44,5 @@ next-env.d.ts
 
 # ferramentas locais de design (Hallmark): log, capturas e relatórios
 /.hallmark/
+
+.vercel
