@@ -2,7 +2,7 @@
 // Se não couber na tela, só a linha dos filtros rola para o lado, nunca a página.
 export default function FilterChips({ opcoes, ativa, onChange }) {
   return (
-    <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1">
+    <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 md:mx-0 md:flex-wrap md:overflow-visible md:px-0">
       {opcoes.map((opcao) => {
         const ligado = opcao.valor === ativa;
         return (
