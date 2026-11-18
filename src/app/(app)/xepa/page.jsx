@@ -54,7 +54,7 @@ export default function Xepa() {
         <p role="status" className="text-sm text-muted">
           {visiveis.length === 1 ? '1 oferta' : `${visiveis.length} ofertas`}
         </p>
-        <ul className="flex flex-col gap-3">
+        <ul className="grid items-start gap-4 md:grid-cols-2 xl:grid-cols-3">
           {visiveis.map((oferta) => (
             <li key={oferta.id}>
               <OfferCard oferta={oferta} disponivel={oferta.disponivel} onClick={() => router.push(`/xepa/oferta?id=${oferta.id}`)} />
@@ -68,7 +68,7 @@ export default function Xepa() {
   return (
     <>
       <AppHeader titulo="Xepa perto de você" subtitulo="Feira da Av. Eng. Caetano Álvares, hoje" />
-      <main className="flex flex-col gap-4 px-4 pt-4">
+      <main className="flex flex-col gap-4 px-4 pt-4 md:px-8">
         <FilterChips opcoes={FILTROS} ativa={filtro} onChange={setFiltro} />
         {conteudo}
       </main>

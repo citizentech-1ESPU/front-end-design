@@ -28,12 +28,19 @@ export default function MinhasReservas() {
   if (carregando) conteudo = <LoadingState />;
   else if (erro) conteudo = <ErrorState mensagem={erro} onTentarDeNovo={() => window.location.reload()} />;
   else if (reservas.length === 0) conteudo = <EmptyState mensagem="Você ainda não reservou nada." rotuloAcao="Ver a xepa" hrefAcao="/xepa" />;
-  else conteudo = reservas.map((reserva) => <ReservaCard key={reserva.id} reserva={reserva} onCancelar={setParaCancelar} />);
+  else
+    conteudo = (
+      <div className="grid items-start gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {reservas.map((reserva) => (
+          <ReservaCard key={reserva.id} reserva={reserva} onCancelar={setParaCancelar} />
+        ))}
+      </div>
+    );
 
   return (
     <>
       <AppHeader titulo="Minhas reservas" subtitulo="Guardadas neste celular" />
-      <main className="flex flex-col gap-3 px-4 pb-24">{conteudo}</main>
+      <main className="flex flex-col gap-3 px-4 pb-24 pt-4 md:px-8 md:pb-12">{conteudo}</main>
       <ConfirmDialog
         aberto={paraCancelar !== null}
         titulo="Cancelar a reserva?"
