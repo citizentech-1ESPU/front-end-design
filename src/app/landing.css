@@ -18,7 +18,7 @@
 .botao-secundario:hover, .botao-secundario:active { background: var(--color-accent-wash); }
 .botao:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
 .botao:disabled, .botao[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; }
-.botao-nav { min-height: 44px; }
+.botao-nav { min-height: 44px; border-radius: var(--radius-pill); }
 
 /* Menu: pílula flutuante */
 .lp-nav { position: sticky; top: var(--space-sm); z-index: var(--z-sticky-nav); padding-inline: var(--gutter); }
