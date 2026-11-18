@@ -134,19 +134,21 @@ São 27, em `src/components/`. Todos só recebem props: não chamam API e não t
 
 ## Acessibilidade
 
+- Lighthouse (celular, Acessibilidade) com nota 100 nas seis telas principais, no site publicado. Detalhes, antes e depois, em [`docs/acessibilidade.md`](docs/acessibilidade.md).
 - Contraste AA em todos os pares de cor; foco visível em todo elemento que recebe clique.
 - Áreas de toque de 44 px ou mais; texto do corpo com 16 px ou mais.
 - O estado da caixa aparece sempre escrito, nunca só pela cor.
-- Animações (o piscar do LED, a plaquinha inclinada) param com `prefers-reduced-motion`.
+- No gelo e sem leitura, só um ponto de LED pisca; o texto do estado fica sempre firme. O piscar para com `prefers-reduced-motion`.
 - A landing funciona sem JavaScript: as abas de perfil viram três blocos, um embaixo do outro.
 - Um link "Pular para o conteúdo" aparece no foco do teclado.
 - Checagem automática com o `sloplint` da Hallmark, no navegador e em larguras de 375 a 1920 px: nenhuma falha nas regras fixas.
-- Ainda falta conferir à mão: Lighthouse, navegação só com teclado, leitor de tela (NVDA) e zoom de 200%.
+- Nenhuma tela rola para o lado em 360 px (prints em [`docs/prints/`](docs/prints/)).
+- Ainda falta conferir à mão: navegação só com teclado, leitor de tela (NVDA) e zoom de 200%.
 
 ## Tecnologias
 
 - Next.js 16.4, React 19.3 e Tailwind CSS 4.3.
-- Vitest 5, Testing Library e jsdom: 227 testes (regras, serviços, hooks, componentes, telas e landing).
+- Vitest 5, Testing Library e jsdom: 230 testes (regras, serviços, hooks, componentes, telas e landing).
 - MockAPI (ofertas e reservas) e ThingSpeak (leituras da caixa, canal 3571880).
 
 ## Pré-requisitos
