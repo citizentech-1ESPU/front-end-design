@@ -20,6 +20,7 @@ A camada de regras, serviços e hooks (`src/domain`, `src/services`, `src/hooks`
 | **Claude Code** (Anthropic) | assistente de programação no terminal, dentro da pasta do projeto | ler os PDFs e o documento de design, montar o repositório, escrever componentes, telas, landing e testes, rodar testes, lint e build, fazer os commits |
 | **Hallmark** (skill aberta da Together AI, instalada no Claude Code) | regras de design contra o visual "feito por IA" e scripts de apoio | guiar o redesenho; sortear a estrutura da landing; buscar fotos com licença aberta; capturar as telas reais do site; verificar a página no navegador em várias larguras (`sloplint`) |
 | **Agente de revisão** (Claude Code, em contexto separado) | uma nova instância da IA, sem o histórico da construção | revisar a página pronta com olhos novos, pelas instruções de revisão da Hallmark |
+| **Claude in Chrome** (extensão do Claude para o navegador) | a IA operando o Chrome: clicar, preencher e ler a página | percorrer no site publicado o CRUD com o MockAPI real (criar, reservar, editar e cancelar) |
 
 Henrique conduziu o trabalho:
 - definiu o problema, as restrições e o material (a logo do time e fotos de feira com licença aberta);
@@ -88,6 +89,19 @@ Todos os oito foram corrigidos.
 - detalhe da oferta em duas colunas;
 - abas no alto, no computador.
 
+**Publicação e acessibilidade**
+> "Publique o site com a URL do MockAPI da equipe e confira, no site publicado, cada operação do CRUD direto na API. Depois:
+> - rode o Lighthouse (celular, Acessibilidade) nas seis telas do plano; a meta é 95 ou mais;
+> - tire prints de 360 x 740 das 11 telas e meça se alguma rola para o lado.
+>
+> Não apague dados da equipe; o que for criado no teste volta ao estado de antes."
+
+*Resposta:*
+- site publicado na Vercel, com o MockAPI da equipe no build;
+- criar, ler, atualizar e excluir conferidos no site e na API; a reserva de teste foi cancelada e a quantidade editada voltou ao valor original;
+- Lighthouse entre 96 e 100. A IA mostrou que as notas abaixo de 100 vinham da etiqueta "Complete o gelo": ela piscava inteira e, no meio do piscar, o texto caía para contraste de 1,5:1. Com a correção (só um ponto de LED pisca), as seis telas ficaram com 100;
+- 11 prints em 360 px, nenhuma tela rolando para o lado.
+
 ## 3. Aplicação no projeto
 
 **Desenvolvido com auxílio da IA:**
@@ -98,8 +112,8 @@ Todos os oito foram corrigidos.
   - o cartão de oferta, o cabeçalho com a logo e as abas por perfil;
   - os formulários, os estados de vazio, carregando e erro, o diálogo de confirmação e o aviso.
 - **As 11 telas do app** em `src/app/(app)/`.
-- **Testes:** os 7 testes da landing e os testes de componentes e telas, junto com os testes da parte de Web (227 no total).
-- **Documentação:** o `README.md`, este arquivo e o `prompts.md`.
+- **Testes:** os 7 testes da landing e os testes de componentes e telas, junto com os testes da parte de Web (230 no total).
+- **Documentação:** o `README.md`, este arquivo, o `prompts.md`, a revisão de acessibilidade (`docs/acessibilidade.md`) e os prints de 360 px (`docs/prints/`).
 
 **Sugerido pela IA e mantido:**
 - mostrar no hero o produto funcionando, e não uma ilustração;
@@ -111,22 +125,26 @@ Todos os oito foram corrigidos.
 - as fotos por categoria saíram das telas do app, porque mostravam um produto diferente do da oferta;
 - a foto da landing trocou de pimentas para peixe no gelo;
 - as capturas foram recortadas abaixo do cabeçalho do app;
-- as telas do app ganharam a largura do computador.
+- as telas do app ganharam a largura do computador;
+- a etiqueta "Complete o gelo" deixou de piscar inteira: agora só um ponto de LED pisca e o texto fica firme (achado do Lighthouse).
 
 ## 4. Validação das respostas
 
-- **Testes automáticos:** 227 testes passando (Vitest e Testing Library), com `npm run lint` limpo e `npm run build` gerando a landing e as 11 rotas.
+- **Testes automáticos:** 230 testes passando (Vitest e Testing Library), com `npm run lint` limpo e `npm run build` gerando a landing e as 11 rotas.
 - **No navegador:**
   - o site rodou com uma imitação local do MockAPI e ofertas de demonstração;
   - a caixa 1 leu o ThingSpeak de verdade (canal 3571880);
-  - os fluxos de anunciar e de reservar foram percorridos.
+  - os fluxos de anunciar e de reservar foram percorridos;
+  - no site publicado, com o MockAPI real da equipe, a IA criou as ofertas de demonstração, reservou, editou e cancelou, conferindo cada operação direto na API.
+- **Lighthouse (celular, Acessibilidade):** antes, 97 na landing, 96 em "Suas caixas" e 100 nas outras quatro telas. Depois da correção do piscar, 100 nas seis. Detalhes em [`docs/acessibilidade.md`](docs/acessibilidade.md).
+- **Celular:** prints de 360 x 740 das 11 telas, com a largura da página medida em cada uma (nenhuma rola para o lado). Com movimento reduzido, o ponto de LED para de piscar.
 - **Verificação de design:** o `sloplint` da Hallmark abriu as páginas em 375, 1024, 1280, 1440 e 1920 px. Mediu contraste, foco, áreas de toque, rolagem para o lado e as regras contra o visual "feito por IA". No resultado final, nenhuma falha nas regras fixas. Duas regras foram dispensadas com o motivo escrito no CSS.
 - **Revisão independente:** um agente sem o histórico da conversa revisou a página e pediu oito correções, todas feitas.
 - **Conferência de Henrique:** ele abriu o site no navegador e apontou o que precisava mudar:
   - as telas do app presas numa coluna estreita no computador;
   - o botão Entrar;
   - a captura cortada na aba do freguês.
-- **Ainda pendente:** Lighthouse, navegação só com teclado, leitor de tela (NVDA) e o teste com o MockAPI real, que depende da URL da parte de Web.
+- **Ainda pendente:** navegação só com teclado, leitor de tela (NVDA) e zoom de 200%, que precisam ser feitos à mão.
 
 ## 5. Análise crítica
 
@@ -137,7 +155,7 @@ Todos os oito foram corrigidos.
 - **Limitações:**
   - A IA escreveu a maior parte do código, então Henrique precisa estudar cada parte para explicar na apresentação.
   - Algumas decisões da IA pareciam boas no código e só se mostraram erradas na tela. Foi o caso das fotos de categoria e da coluna de celular no computador.
-  - As ofertas foram testadas com uma imitação do MockAPI, não com o serviço real.
+  - O `sloplint` mediu o contraste e não achou problema, porque olhou a etiqueta num momento em que ela estava acesa. O Lighthouse pegou o momento apagado. Uma ferramenta automática vê só um instante da página, então vale usar mais de uma.
 - **Dificuldades:**
   - A IA às vezes fez escolhas que contrariavam o documento de design, como o gelo em azul. Por isso, conferir cada mudança contra a fonte de verdade foi necessário.
   - Capturar as telas sem a barra de abas fixa e sem o indicador do modo dev pediu um script próprio.
