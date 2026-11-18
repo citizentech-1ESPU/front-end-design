@@ -64,6 +64,67 @@ Prints em 360 px (celular) de cada perfil. Os das 11 rotas estão em [`docs/prin
 
 A camada de regras, serviços e hooks (`src/domain`, `src/services`, `src/hooks`, `src/data`, `scripts/seed.mjs`) é da parte de Web Development (Daniel Gomes Torres). Ela veio do repositório [`web_development`](https://github.com/citizentech-1ESPU/web_development), commit `da0a395`, porque o PDF da GS define a parte de Web como "o JavaScript que dá vida à interface, no mesmo repositório do Front-end".
 
+## Componentes
+
+São 27, em `src/components/`. Todos só recebem props: não chamam API e não têm regra de negócio. Os dados chegam pelas telas, que chamam os hooks. A exceção são os dois componentes da landing que leem o perfil e as caixas ao vivo.
+
+**`ui/` · base e retorno**
+
+| Componente | O que faz | Props principais |
+|---|---|---|
+| `Button` | botão ou link com cara de botão, com área de toque de 44 px | `variante`, `type`, `disabled`, `onClick`, `href` |
+| `Badge` | etiqueta pequena de informação | `tipo` |
+| `FormField` | rótulo, campo, dica e erro ligados pelo mesmo `id` | `id`, `rotulo`, `dica`, `erro` |
+| `Toggle` | interruptor liga/desliga (`role="switch"`) | `id`, `rotulo`, `ligado`, `onChange` |
+| `QuantityStepper` | botões de menos e mais para a quantidade | `valor`, `min`, `max`, `unidade`, `onChange` |
+| `FilterChips` | filtros por tipo; o ativo fica com `aria-pressed` | `opcoes`, `ativa`, `onChange` |
+| `LoadingState` | "Carregando…" escrito e anunciado | `mensagem` |
+| `EmptyState` | lista vazia, com o próximo passo | `mensagem`, `rotuloAcao`, `onAcao`, `hrefAcao` |
+| `ErrorState` | erro no tom da feira, com "Tentar de novo" | `mensagem`, `onTentarDeNovo` |
+| `Toast` | aviso que some sozinho (`useEffect` com `clearTimeout`) | `mensagem`, `onFechar`, `duracaoMs` |
+| `ConfirmDialog` | pergunta antes de excluir ou cancelar; prende o foco e fecha com Esc (`useEffect`) | `aberto`, `titulo`, `mensagem`, `rotuloConfirmar`, `onConfirmar`, `onCancelar` |
+
+**`caixa/` · a caixa térmica**
+
+| Componente | O que faz | Props principais |
+|---|---|---|
+| `BoxCard` | cartão da caixa em "Suas caixas": estado, temperatura, tempo fora do frio e botão de anunciar | `caixa`, `onAnunciar` |
+| `StatusPill` | estado da caixa sempre escrito; no gelo e sem leitura, um ponto de LED pisca | `estado` |
+| `TemperatureReading` | temperatura e tendência (subindo, descendo, estável) | `temperaturaC`, `taxaCh` |
+| `TimeBar` | barra do tempo acima de 5 °C, com as marcas de 2h e 4h | `minutosFora` |
+| `IceAlert` | aviso de completar o gelo antes de passar de 5 °C | `minutosAte5C` |
+
+**`oferta/` · ofertas e reservas**
+
+| Componente | O que faz | Props principais |
+|---|---|---|
+| `OfferCard` | oferta na lista do freguês e da ONG; o cartão inteiro é um botão | `oferta`, `disponivel`, `onClick` |
+| `PriceTag` | preço normal riscado e preço da xepa | `precoNormal`, `precoXepa`, `unidade`, `grande` |
+| `SeloTemperatura` | diz se a temperatura foi conferida por sensor, simulada ou se é produto sem frio | `fonteCaixa` |
+| `ReservaCard` | reserva do freguês ou retirada da ONG, com o botão de cancelar | `reserva`, `onCancelar` |
+
+**`formularios/`**
+
+| Componente | O que faz | Props principais |
+|---|---|---|
+| `OfertaForm` | anunciar (a partir da caixa ou livre) e editar oferta, com prazo travado e preço sugerido | `modo`, `valores`, `erros`, `precoSugerido`, `opcoesPrazo`, `onAlterar`, `onEnviar` |
+| `ReservaForm` | reserva do freguês e retirada da ONG | `tipo`, `valores`, `erros`, `disponivel`, `opcoesRetirada`, `precisaCaixaTermica`, `onAlterar`, `onEnviar` |
+
+**`layout/`**
+
+| Componente | O que faz | Props principais |
+|---|---|---|
+| `AppHeader` | topo da tela: logo, "Voltar", título (o único `h1`) e subtítulo | `titulo`, `subtitulo`, `voltarPara` |
+| `BottomNav` | as três abas de cada perfil | `perfil`, `ativa` |
+
+**`landing/`**
+
+| Componente | O que faz | Props principais |
+|---|---|---|
+| `EntrarComo` | entra no site já guardando o perfil, sem cadastro | `perfil`, `href`, `variante` |
+| `PainelDeCaixas` | as quatro caixas da banca ao vivo no topo da landing | nenhuma (usa `useCaixas`) |
+| `TrocaDePerfil` | abas com a tela real de cada perfil; sem JavaScript, viram três blocos | nenhuma |
+
 ## Identidade visual
 
 - **Logo:** a plaquinha amarela da feira pendurada no prego (`public/logo/`). O selo "Hora da xepa" nas telas usa a mesma placa inclinada.
