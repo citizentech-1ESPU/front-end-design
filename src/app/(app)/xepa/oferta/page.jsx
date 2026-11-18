@@ -17,7 +17,7 @@ function SemOferta({ texto }) {
   return (
     <>
       <AppHeader titulo="Oferta" voltarPara="/xepa" />
-      <main className="flex flex-col gap-4 px-4 pb-10 pt-4">
+      <main className="flex flex-col gap-4 px-4 pb-10 pt-4 md:px-8">
         <p className="rounded-control bg-card p-4 font-bold">{texto}</p>
         <Link href="/xepa" className="flex min-h-11 items-center justify-center font-bold text-accent underline">
           Ver outras ofertas
@@ -90,9 +90,11 @@ function DetalheOferta() {
   return (
     <>
       <AppHeader titulo={oferta.produto} subtitulo={`${oferta.banca}, ${oferta.feira}`} voltarPara="/xepa" />
-      <main className="flex flex-col gap-4 px-4 pb-10 pt-4">
-        <PriceTag precoNormal={oferta.precoNormal} precoXepa={oferta.precoXepa} unidade={oferta.unidade} grande />
-        <Confianca oferta={oferta} />
+      <main className="grid items-start gap-4 px-4 pb-10 pt-4 md:grid-cols-2 md:gap-8 md:px-8">
+        <div className="flex flex-col gap-4">
+          <PriceTag precoNormal={oferta.precoNormal} precoXepa={oferta.precoXepa} unidade={oferta.unidade} grande />
+          <Confianca oferta={oferta} />
+        </div>
 
         {reservou ? (
           <div className="flex flex-col gap-3 rounded-card border border-rule p-4">
