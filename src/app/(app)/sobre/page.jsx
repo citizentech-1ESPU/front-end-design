@@ -64,8 +64,8 @@ export default function Sobre() {
             {EQUIPE.map((pessoa) => (
               <li key={pessoa.rm} className="border-t border-rule pt-4">
                 <strong className="block">{pessoa.nome}</strong>
-                <span className="text-sm text-muted">{pessoa.parte}</span>
-                <span className="text-sm text-muted">{pessoa.rm}</span>
+                <span className="block text-sm text-muted">{pessoa.parte}</span>
+                <span className="block text-sm text-muted">{pessoa.rm}</span>
               </li>
             ))}
           </ul>
