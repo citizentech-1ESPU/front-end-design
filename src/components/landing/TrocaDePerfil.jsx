@@ -23,7 +23,7 @@ const PERFIS = [
     titulo: 'Reserve e retire na banca',
     texto: 'Xepa perto de você, com o selo de temperatura conferida e a hora de retirar.',
     tela: '/telas/xepa.png',
-    altura: 1306,
+    altura: 1194,
     acao: 'Ver a xepa de hoje',
     href: '/xepa',
   },
