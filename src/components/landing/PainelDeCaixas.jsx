@@ -2,6 +2,7 @@
 import { useCaixas } from '@/hooks/useCaixas';
 import StatusPill from '@/components/caixa/StatusPill';
 import TimeBar from '@/components/caixa/TimeBar';
+import { dadosDoEstado } from '@/components/caixa/estados';
 
 const umaCasa = (valor) => valor.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 
@@ -27,6 +28,7 @@ export default function PainelDeCaixas() {
                 {caixa.temperaturaC === null || caixa.temperaturaC === undefined ? '-- °C' : `${umaCasa(caixa.temperaturaC)} °C`}
               </p>
               <TimeBar minutosFora={caixa.minutosFora} />
+              <p className="painel-acao">{dadosDoEstado(caixa.estado).apoio}</p>
             </li>
           ))}
       </ul>
