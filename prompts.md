@@ -196,3 +196,21 @@ Os registros abaixo descrevem o prompt de cada etapa, o que a IA fez com o direc
     - corrigiu a tabela no celular;
     - trocou os títulos por "Feirante anuncia, freguês reserva, ONG retira" e "Abra no celular, ali na feira".
 - **Como conferimos:** `sloplint` de novo no navegador, sem falha; 227 testes passando; lint e build ok; página inteira vista a 1440 px.
+
+### 18/11 · Ajustes de responsividade (Claude Code)
+- **Prompt:** "Abra a landing e as telas do app em 360, 414, 768, 1024 e 1440 px. Meça se alguma página rola para o lado e olhe cada largura. No computador, as telas do app não podem ficar presas numa coluna de celular: use a largura da tela, ponha as listas em grade e mantenha o celular como está."
+- **O que a IA fez com o direcionamento de Henrique:**
+  - Na landing, corrigiu:
+    - a plaquinha que sobrepunha o nome da caixa a 1024 px;
+    - a tabela que virava lista no tablet;
+    - a foto alta demais a 768 px;
+    - os botões de larguras diferentes no celular.
+  - Na página Sobre, separou a parte e o RM de cada integrante, que estavam colados.
+  - Depois que Henrique mostrou as telas do app presas numa coluna estreita no computador, abriu as telas até 72rem:
+    - as listas viraram grade de 2 ou 3 colunas;
+    - o detalhe da oferta ficou em duas colunas;
+    - as abas subiram para uma pílula no alto, à direita.
+  - Também arredondou o botão Entrar do menu.
+  - Refez a captura da tela do freguês sem a linha de filtros cortada.
+- **Como conferimos:** nenhuma rolagem para o lado em nenhuma largura; capturas em 375, 1024 e 1440 px vistas uma a uma; 227 testes passando; `sloplint` sem falha.
+
