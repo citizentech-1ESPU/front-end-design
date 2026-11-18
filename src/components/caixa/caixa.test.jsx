@@ -19,6 +19,19 @@ describe('StatusPill', () => {
     render(<StatusPill estado={estado} />);
     expect(screen.getByText(texto)).toBeInTheDocument();
   });
+
+  it.each(['gelo', 'sensor'])('no estado %s só o ponto de LED pisca; o texto fica firme', (estado) => {
+    const { container } = render(<StatusPill estado={estado} />);
+    const pontos = container.querySelectorAll('.piscar');
+    expect(pontos).toHaveLength(1);
+    expect(pontos[0]).toHaveAttribute('aria-hidden', 'true');
+    expect(pontos[0].textContent).toBe('');
+  });
+
+  it('sem piscar, não há ponto de LED', () => {
+    const { container } = render(<StatusPill estado="normal" />);
+    expect(container.querySelector('.piscar')).toBeNull();
+  });
 });
 
 describe('TemperatureReading', () => {
