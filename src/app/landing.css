@@ -1,6 +1,6 @@
 /* Hallmark · shape: product page led by the live boxes (draw 96886a; Marquee Hero swapped, a feira precisa entender a ideia em segundos) · genre: editorial · theme: brand · redesign: full · job: try · draw: 96886a
  * paper: oklch(96.4% 0.007 89) · accent: oklch(42.3% 0.111 255) · display: Archivo 800 · body: Atkinson Hyperlegible · hero: Stage · nav: floating pill · footer: letter close · signature: as quatro caixas da banca ao vivo no hero, a caixa 1 lida do ThingSpeak, com a plaquinha amarela de Hora da xepa
- * axes: light/grotesk-heavy/cool · posture: restrained (verde, amarelo e vermelho são os estados da caixa, não acento) · imagery: screenshots 4 (capture.mjs), library 1 · contrast: pass · fold: pass · v2.0.0 */
+ * axes: light/grotesk-heavy/cool · posture: restrained (verde, amarelo e vermelho são os estados da caixa, não acento) · imagery: screenshots 4 (capture.mjs, cortadas abaixo do cabeçalho do app), library 1 (peixe no gelo) · contrast: pass · fold: pass · v2.0.0 */
 /* Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V4 · weakest: P, a página explica em vez de discutir; a fala do feirante e a regra das 2h e 4h carregam o argumento */
 /* Hallmark · dismissed 28a · o LCP é o título e o painel das caixas; a tela do switcher fica abaixo da dobra e pode carregar depois */
 
@@ -41,12 +41,13 @@
 /* O painel das caixas: um poço, as caixas separadas por fios */
 .painel { margin: 0; padding: var(--space-lg); background: var(--color-paper-2); border-radius: var(--radius-card); }
 .painel-lista { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; }
-.painel-caixa { display: flex; flex-direction: column; gap: var(--space-sm); min-height: 15rem; padding: var(--space-lg); border-bottom: var(--rule-hair) solid var(--color-rule); }
+.painel-caixa { display: flex; flex-direction: column; gap: var(--space-sm); padding: var(--space-lg); border-bottom: var(--rule-hair) solid var(--color-rule); }
 .painel-caixa:nth-child(odd) { border-right: var(--rule-hair) solid var(--color-rule); }
 .painel-caixa:nth-last-child(-n + 2) { border-bottom: 0; }
 .painel-topo { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-xs); }
 .painel-nome { font-family: var(--font-display); font-weight: 800; font-size: var(--text-lg); }
 .painel-temp { font-family: var(--font-display); font-weight: 800; font-size: var(--text-3xl); line-height: 1; letter-spacing: var(--tracking-display); }
+.painel-acao { margin-top: auto; font-weight: 700; }
 .painel-aviso { grid-column: 1 / -1; padding: var(--space-xl); color: var(--color-muted); font-weight: 700; }
 .painel-legenda { margin-top: var(--space-md); padding-inline: var(--space-lg); font-size: var(--text-sm); color: var(--color-muted); }
 
@@ -80,26 +81,28 @@
 .troca-aba:hover { color: var(--color-accent); }
 .troca-aba[aria-selected="true"] { background: var(--color-ink); color: var(--color-paper); }
 .troca-aba:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
-.troca-painel { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-3xl); align-items: center; }
+.troca-painel { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: var(--space-3xl); align-items: start; }
 .troca-painel + .troca-painel { margin-top: var(--space-3xl); }
-.troca-tela, .lp-fecho-tela { position: relative; aspect-ratio: 9 / 13; max-height: 40rem; border-radius: var(--radius-card); outline: var(--rule-hair) solid var(--color-rule); outline-offset: -1px; }
+.troca-tela, .lp-fecho-tela { position: relative; width: 100%; max-width: 30rem; justify-self: end; border-radius: var(--radius-card); outline: var(--rule-hair) solid var(--color-rule); outline-offset: -1px; }
 .troca-tela > img, .lp-fecho-tela > img { object-position: 50% 0; }
-.troca-texto { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-md); max-width: 30rem; }
+.troca-texto { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-md); max-width: 30rem; padding-top: var(--space-xl); }
 .troca-texto h3 { font-size: var(--text-2xl); }
 .troca-texto p { font-size: var(--text-lead); line-height: 1.45; }
 
 /* A fala do feirante, ao lado de uma feira de São Paulo */
-.lp-fala-grade { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--space-3xl); align-items: center; }
-.lp-foto { margin: 0; aspect-ratio: 5 / 4; border-radius: var(--radius-card); }
+.lp-fala-grade { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-3xl); align-items: center; }
+.lp-foto { margin: 0; aspect-ratio: 4 / 5; border-radius: var(--radius-card); }
+.lp-foto > img { object-position: 50% 30%; }
 .lp-citacao { margin: 0; display: flex; flex-direction: column; gap: var(--space-lg); }
-.lp-citacao p { font-family: var(--font-display); font-weight: 800; font-size: var(--text-2xl); line-height: 1.2; letter-spacing: var(--tracking-display); text-indent: -0.4em; text-wrap: balance; }
+.lp-citacao p { font-family: var(--font-display); font-weight: 800; font-size: var(--text-3xl); line-height: 1.2; letter-spacing: var(--tracking-display); text-indent: -0.4em; text-wrap: balance; }
 .lp-citacao footer { font-size: var(--text-sm); color: var(--color-muted); max-width: 40ch; }
 
 /* Fecho: as três entradas ao lado de uma última tela */
 .lp-fecho-grade { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: var(--space-3xl); align-items: center; }
 .lp-fecho-texto { display: flex; flex-direction: column; gap: var(--space-lg); }
 .lp-fecho-texto h2 { margin-bottom: 0; }
-.lp-entradas { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-sm); margin: var(--space-md) 0 0; padding: 0; list-style: none; }
+.lp-entradas { display: grid; gap: var(--space-sm); width: min(100%, 20rem); margin: var(--space-md) 0 0; padding: 0; list-style: none; }
+.lp-entradas .botao { width: 100%; }
 
 /* Rodapé em forma de carta */
 .lp-rodape { padding-block: var(--space-3xl); border-top: var(--rule-hair) solid var(--color-rule); }
@@ -117,13 +120,14 @@
   .lp-links { display: none; }
   .lp-hero { min-height: 0; padding-block: var(--space-xl) var(--space-2xl); }
   .lp-hero-grade, .troca-painel, .lp-fala-grade, .lp-fecho-grade, .lp-cabeca { grid-template-columns: minmax(0, 1fr); gap: var(--space-xl); }
-  .troca-tela, .lp-fecho-tela { max-height: 32rem; }
   .lp-tabela-antes thead { display: none; }
   .lp-tabela-antes tr { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2xs); padding-block: var(--space-md); border-top: var(--rule-hair) solid var(--color-rule); }
-  .lp-tabela-antes th, .lp-tabela-antes td { width: auto; padding: 0; border-top: 0; }
+  .lp-tabela-antes th, .lp-tabela-antes td, .lp-tabela-antes tbody th, .lp-tabela-antes td:first-of-type, .lp-tabela-antes td:last-of-type { width: auto; padding: 0; border-top: 0; }
   .lp-tabela-regra thead { display: none; }
   .lp-tabela-regra tr { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2xs); padding-block: var(--space-md); border-top: var(--rule-hair) solid var(--color-rule); }
-  .lp-tabela-regra th, .lp-tabela-regra td { width: auto; padding: 0; border-top: 0; }
+  .lp-tabela-regra th, .lp-tabela-regra td, .lp-tabela-regra tbody th { width: auto; padding: 0; border-top: 0; }
+  .troca-tela, .lp-fecho-tela { justify-self: start; }
+  .troca-texto { padding-top: 0; }
   .lp-rodape-grade { grid-template-columns: minmax(0, 1fr); }
   .lp-citacao p { text-indent: 0; }
 }

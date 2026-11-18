@@ -95,19 +95,19 @@ export default function Landing() {
 
         <section className="lp-secao lp-perfis" aria-labelledby="titulo-perfis">
           <div className="container">
-            <h2 id="titulo-perfis">Um site, três jeitos de usar</h2>
+            <h2 id="titulo-perfis">Feirante anuncia, freguês reserva, ONG retira</h2>
             <TrocaDePerfil />
           </div>
         </section>
 
         <section className="lp-secao lp-fala" aria-labelledby="titulo-fala">
           <div className="container lp-fala-grade">
-            <figure className="lp-foto" data-slot="feira" data-alt="Uma banca da feira de domingo da Av. Engenheiro Caetano Álvares">
+            <figure className="lp-foto" data-slot="feira" data-alt="A banca de peixe da feira de domingo da Av. Engenheiro Caetano Álvares, ou a caixa térmica do protótipo">
               <img
-                src="/fotos/feira-saude-pimentas.jpg"
-                alt="Bacias de pimenta numa banca de feira, vistas de cima"
-                width="1600"
-                height="1269"
+                src="/fotos/peixe-no-gelo.jpg"
+                alt="Peixes inteiros sobre gelo numa banca de mercado"
+                width="1000"
+                height="1500"
                 loading="lazy"
               />
             </figure>
@@ -158,8 +158,8 @@ export default function Landing() {
         <section id="entrar" className="lp-secao lp-fecho" aria-labelledby="titulo-entrar">
           <div className="container lp-fecho-grade">
             <div className="lp-fecho-texto">
-              <h2 id="titulo-entrar">Sem app e sem cadastro</h2>
-              <p className="lead">Abra no celular, escolha quem você é e pronto.</p>
+              <h2 id="titulo-entrar">Abra no celular, ali na feira</h2>
+              <p className="lead">Sem app para instalar e sem cadastro.</p>
               <ul className="lp-entradas">
                 <li>
                   <EntrarComo perfil="feirante" href="/feirante">
@@ -178,8 +178,8 @@ export default function Landing() {
                 </li>
               </ul>
             </div>
-            <div className="lp-fecho-tela" data-slot="tela-oferta" data-kind="product" data-alt="Detalhe de uma oferta no celular">
-              <img src="/telas/oferta.png" alt="Detalhe de uma oferta de tilápia, com o preço da xepa e o selo de temperatura conferida" width="780" height="1688" loading="lazy" />
+            <div className="lp-fecho-tela" style={{ aspectRatio: '780 / 1126' }} data-slot="tela-oferta" data-kind="product" data-alt="Detalhe de uma oferta no celular">
+              <img src="/telas/oferta.png" alt="Detalhe de uma oferta de tilápia, com o preço da xepa, o selo de temperatura conferida e a reserva" width="780" height="1126" loading="lazy" />
             </div>
           </div>
         </section>
@@ -198,8 +198,8 @@ export default function Landing() {
               <a href="https://github.com/citizentech-1ESPU/front-end-design">Código no GitHub</a>
             </p>
             <p data-credits className="lp-creditos">
-              Foto: <a href="https://commons.wikimedia.org/wiki/File:Capsicum_baccatum_in_Sa%C3%BAde_flea_market,_S%C3%A3o_Paulo,_Brazil.jpg">Wilfredor</a>{' '}
-              (CC BY-SA 4.0, Wikimedia Commons).
+              Foto: <a href="https://commons.wikimedia.org/wiki/File:Oweston_sting_fish_for_sale_at_Tsukiji_Fishmarket,_Tokyo-30.jpg">MichaelMaggs</a>{' '}
+              (CC BY-SA 3.0, Wikimedia Commons).
             </p>
           </div>
         </div>
