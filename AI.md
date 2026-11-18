@@ -155,7 +155,7 @@ Todos os oito foram corrigidos.
 - **Limitações:**
   - A IA escreveu a maior parte do código, então Henrique precisa estudar cada parte para explicar na apresentação.
   - Algumas decisões da IA pareciam boas no código e só se mostraram erradas na tela. Foi o caso das fotos de categoria e da coluna de celular no computador.
-  - O `sloplint` mediu o contraste e não achou problema, porque olhou a etiqueta num momento em que ela estava acesa. O Lighthouse pegou o momento apagado. Uma ferramenta automática vê só um instante da página, então vale usar mais de uma.
+  - O `sloplint` também mede contraste e não apontou o problema do piscar; o Lighthouse apontou. Uma ferramenta automática sozinha não basta, e a conferência à mão (teclado e leitor de tela) continua necessária.
 - **Dificuldades:**
   - A IA às vezes fez escolhas que contrariavam o documento de design, como o gelo em azul. Por isso, conferir cada mudança contra a fonte de verdade foi necessário.
   - Capturar as telas sem a barra de abas fixa e sem o indicador do modo dev pediu um script próprio.
