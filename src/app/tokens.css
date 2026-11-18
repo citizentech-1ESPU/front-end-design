@@ -1,0 +1,87 @@
+@theme static {
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5625rem;
+  --text-2xl: 1.953rem;
+  --text-3xl: 2.441rem;
+  --text-display-s: clamp(2.25rem, 4vw + 0.5rem, 3.75rem);
+  --text-display: clamp(2.75rem, 5vw + 1rem, 5.25rem);
+  --text-section: clamp(2rem, 2.5vw + 1rem, 3.5rem);
+  --text-title: clamp(1.25rem, 0.75vw + 0.875rem, 1.625rem);
+  --text-lead: clamp(1.125rem, 0.35vw + 1rem, 1.375rem);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --color-error: oklch(50.5% 0.190 28);
+  --color-success: oklch(52.7% 0.137 150);
+  --color-paper: oklch(96.4% 0.007 89);
+  --color-paper-2: oklch(93.7% 0.010 94);
+  --color-paper-3: oklch(90.1% 0.013 87);
+  --color-card: oklch(99.3% 0.003 89);
+  --color-ink: oklch(21% 0.008 275);
+  --color-ink-2: oklch(34% 0.012 270);
+  --color-muted: oklch(49.2% 0.022 266);
+  --color-rule: oklch(88.5% 0.013 87);
+  --color-accent: oklch(42.3% 0.111 255);
+  --color-accent-hover: oklch(36% 0.100 255);
+  --color-accent-wash: oklch(94.3% 0.014 255);
+  --color-accent-ink: oklch(98.5% 0.004 255);
+  --color-focus: oklch(45% 0.180 258);
+  /* a plaquinha da feira: o amarelo da logo */
+  --color-sign: oklch(79.5% 0.162 86);
+  /* estados da caixa: os mesmos do LED, do painel e do site (design 6.3) */
+  --color-ok: oklch(52.7% 0.137 150);
+  --color-ok-bg: oklch(96.2% 0.043 157);
+  --color-ok-ink: oklch(39.3% 0.090 153);
+  --color-warn: oklch(50.8% 0.108 73);
+  --color-warn-solid: oklch(79.5% 0.162 86);
+  --color-warn-bg: oklch(96.2% 0.058 96);
+  --color-bad: oklch(50.5% 0.190 28);
+  --color-bad-bg: oklch(93.6% 0.031 18);
+  --color-ice: oklch(44.3% 0.100 241);
+  --color-ice-bg: oklch(95.1% 0.025 237);
+  --font-display: var(--font-archivo), "Archivo", system-ui, sans-serif;
+  --font-body: var(--font-atkinson), "Atkinson Hyperlegible", system-ui, sans-serif;
+  --font-outlier: var(--font-body);
+  --radius-card: 6px;
+  --radius-control: 6px;
+  --radius-pill: 999px;
+  --shadow-card: none;
+  --tracking-display: -0.015em;
+}
+
+:root {
+  --display-weight: 800;
+  --space-3xs: 2px;
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+  --space-4xl: 144px;
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+  --container: 1440px;
+  --gutter: 64px;
+  --gap-columns: 32px;
+  --section-gap-s: 120px;
+  --section-gap: 144px;
+  --section-gap-l: 176px;
+  --z-base: 1;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-sticky-nav: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-tooltip: 600;
+  --rule-hair: 1px;
+}
+@media (max-width: 60rem) { :root { --gutter: 24px; --section-gap-s: 80px; --section-gap: 96px; --section-gap-l: 120px; } }
+@media (max-width: 40rem) { :root { --gutter: 16px; --section-gap-s: 56px; --section-gap: 72px; --section-gap-l: 96px; --gap-columns: 16px; } }

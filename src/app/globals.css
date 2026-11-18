@@ -1,26 +1,27 @@
+/* Hallmark · shape: app screen · genre: editorial · theme: brand · redesign: full
+ * paper: oklch(96.4% 0.007 89) · accent: oklch(42.3% 0.111 255) · display: Archivo · body: Atkinson Hyperlegible · hero: kept · nav: kept (cabeçalho com a logo compacta e barra de três abas por perfil) · footer: kept · signature: a plaquinha amarela da logo como selo de Hora da xepa no cartão da caixa
+ * axes: light/grotesk-heavy/cool · posture: restrained (os estados da caixa são sinal, não acento) · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V4 · weakest: P, tela de app pede familiaridade; o argumento fica na caixa que muda de cor e no vocabulário de feira */
+/* Hallmark · waive 39b · tela de app, o cartão de oferta é um botão com alvo bem acima de 44 px · o cartão inteiro da oferta é o botão, para o freguês tocar fácil no celular da feira */
+/* Hallmark · waive 26b · o cartão da caixa não é controle de formulário e não usa aria-disabled · o botão de anunciar do cartão é o Button, que já traz o estado disabled */
+/* Hallmark · dismissed 23 · o azul a 6% na tela de doações são os botões Combinar retirada, a ação de cada oferta */
 @import "tailwindcss";
+@import "./tokens.css";
+@import "./base.css" layer(base);
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Telas do app: escala fixa, menor que a da landing (flow.md, App screens) */
+@layer base {
+  :root { color-scheme: light; }
+  .app h1 { font-size: var(--text-2xl); max-width: none; line-height: 1.1; }
+  .app h2 { font-size: var(--text-xl); max-width: none; line-height: 1.15; }
+  .app h3 { font-size: var(--text-lg); max-width: none; line-height: 1.2; }
+  .app p { max-width: none; }
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* Piscar do gelo e do sensor, como o LED da caixa */
+@keyframes piscar { 50% { opacity: 0.25; } }
+.piscar { animation: piscar 1s steps(1) infinite; }
+@media (prefers-reduced-motion: reduce) { .piscar { animation: none; } }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+/* A plaquinha da feira: o selo de Hora da xepa fica inclinado como a placa da logo */
+.plaquinha { transform: rotate(-2deg); }
