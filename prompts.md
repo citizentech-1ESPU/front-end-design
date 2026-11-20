@@ -1,117 +1,12 @@
-# Uso de IA no site da Xepa Certa (Front-end Design)
+# Registro de prompts do site da Xepa Certa (Front-end Design)
 
-Registro do uso de Inteligência Artificial no desenvolvimento do site, organizado nas cinco partes pedidas pela FIAP (PDF, pág. 41). Henrique Lira (RM571009) conduziu o trabalho: definiu os objetivos, as restrições e o material de referência, solicitou cada etapa e aprovou os resultados. As ferramentas de IA atuaram como apoio técnico no planejamento, na implementação e na revisão. Onde o registro informa que a IA escreveu código ou testes, essa autoria fica explícita.
+**Disciplina:** Front-end Design · **Responsável:** Henrique Lira (RM571009) · **Time:** SafeTech · GS CitizenTech 2026.2, FIAP
+
+Registro dos pedidos feitos às ferramentas de IA durante o desenvolvimento do site, como pedem os combinados da GS (PDF, pág. 22). As cinco partes exigidas pela disciplina (ferramentas, interações, aplicação no projeto, validação e análise crítica) estão no [`AI.md`](AI.md).
 
 A camada de regras, serviços e hooks (`src/domain`, `src/services`, `src/hooks`, `src/data`) pertence à parte de Web Development, de Daniel Gomes Torres (RM573436), e não é descrita aqui como trabalho do Front-end.
 
 ------------------------------------------------
-
-## 1. Ferramentas e finalidades
-
-- **Claude Code** (assistente de programação da Anthropic, usado no terminal, dentro da pasta do projeto): principal ferramenta de implementação. Leu os PDFs da entrega e o documento de design, montou o repositório, escreveu componentes, telas, landing e testes, executou testes, lint e build e registrou os commits.
-- **Hallmark** (skill de design de código aberto, da Together AI, instalada no Claude Code): conjunto de regras de design verificáveis (cores e fontes em tokens, ícones no lugar de emojis, foco visível, contraste) e de scripts que:
-  - definem a estrutura da página;
-  - buscam fotos com licença aberta;
-  - capturam as telas reais do site;
-  - verificam a página no navegador, em larguras de 375 a 1920 px (`sloplint`).
-- **Agente de revisão** (Claude Code, em contexto separado): nova instância, sem o histórico da construção, usada para revisar a página pronta de forma independente.
-- **Claude in Chrome** (extensão do Claude para o navegador): usada para percorrer o CRUD no site publicado, com o MockAPI real da equipe.
-- **Forma de trabalho:** Henrique definiu o problema, as restrições (manter as cores dos estados da caixa, o tom de voz e as onze telas) e o material (a logo do time e fotos de feira com licença aberta). A IA propôs o plano, implementou e verificou cada etapa. As decisões de Henrique estão na seção 2.
-
-## 2. Prompts, decisões e direcionamento
-
-Decisões de Henrique, por data:
-
-- **11/11:** construir a primeira versão do Front a partir do plano de Front-end (`03-front-lira.pdf`) e do histórico do repositório de Web, com varredura completa dos PDFs antes da implementação.
-- **17/11:** manter o site do Front num repositório próprio da organização (`front-end-design`) e devolver o `web_development` ao último commit da parte de Web. O Front passa a ter deploy próprio.
-- **17/11:** copiar para o repositório novo a camada de regras, serviços e hooks da parte de Web, depois de confirmar nos PDFs que as duas entregas são ligadas.
-- **17/11:** refazer o Front com a Hallmark, preservando as cores dos estados da caixa (as mesmas do LED, do painel e do site), o tom de voz de feira, as onze telas e a ligação com os hooks.
-- **17/11:** o site deve apresentar a solução, como uma landing, e não abrir apenas nas telas de uso. Usar a logo nova do time e fotos de feira com licença aberta.
-- **18/11:** corrigir todos os pontos apontados na revisão independente e abrir as telas do app na largura do computador.
-- **18/11:** publicar o site com o MockAPI da equipe e conferir o CRUD no site publicado, sem apagar dados da equipe.
-- **19/11:** padronizar este registro no mesmo formato do registro de Python da equipe, separado por etapas de desenvolvimento.
-
-Todos os pedidos seguiram a mesma estrutura:
-- **Contexto:** onde está o material.
-- **Fonte de verdade:** o documento de design, os PDFs e a logo.
-- **Tarefa:** uma única tarefa por pedido.
-- **Restrições:** o que não pode mudar.
-- **Critério de pronto:** testes, lint, build e `sloplint` sem falha.
-
-## 3. Funcionalidades feitas, sugeridas ou modificadas com IA
-
-- **Implementadas pela IA a partir das decisões de Henrique:**
-  - a landing (`/`), com:
-    - as quatro caixas ao vivo no hero;
-    - a comparação entre a feira de hoje e a feira com a Xepa Certa;
-    - a troca de perfil com as telas reais;
-    - a fala do feirante entrevistado;
-    - a tabela da regra das 2 e 4 horas;
-    - as três entradas, sem cadastro;
-  - o sistema visual da marca em tokens (`tokens.css`, `base.css`, `globals.css`);
-  - os 27 componentes de `src/components/`;
-  - as onze telas do app, em coluna de celular no telefone e em grade no computador;
-  - os testes da landing, dos componentes e das telas;
-  - o README, a revisão de acessibilidade (`docs/acessibilidade.md`) e os prints de 360 px (`docs/prints/`).
-- **Sugestões da IA incorporadas ao projeto:**
-  - mostrar no hero o produto funcionando (as caixas lidas do ThingSpeak), em vez de uma ilustração;
-  - usar a plaquinha amarela da logo como selo de "Hora da xepa";
-  - ilustrar a landing com capturas das telas reais do site;
-  - citar a única fala literal liberada da entrevista com o feirante (documento de design, seção 2);
-  - trocar o ponto no meio dos textos ("Banca Mar Azul · 350 m") por vírgula ("Banca Mar Azul, a 350 m").
-- **Modificadas depois da conferência:**
-  - as fotos por categoria saíram das telas do app, porque mostravam um produto diferente do anunciado;
-  - o estado "Complete o gelo" voltou para o verde, que é a cor do LED no documento de design;
-  - a foto da landing passou de pimentas para peixe no gelo;
-  - as capturas foram recortadas abaixo do cabeçalho do app;
-  - os botões do diálogo de exclusão perderam a borda;
-  - a etiqueta "Complete o gelo" deixou de piscar inteira: agora só o ponto de LED pisca e o texto fica firme.
-
-## 4. Como verificamos, testamos e ajustamos
-
-- **Testes automatizados:** 230 testes passando (Vitest e Testing Library), incluindo os 7 testes da landing e os 3 do piscar da etiqueta. Cobrem o único `h1` por tela, as ações do hero, as quatro caixas, os estados de carregando e erro, a tabela da regra, a gravação do perfil e as abas com as setas do teclado.
-- **Lint e build:** `npm run lint` sem erro e `npm run build` gerando a landing e as onze rotas estáticas.
-- **No navegador:**
-  - o site foi executado com uma cópia local do MockAPI, fora do repositório, e com as seis ofertas de demonstração;
-  - a caixa 1 leu o ThingSpeak real (canal 3571880);
-  - as capturas das telas foram feitas a partir do build de produção;
-  - no site publicado, com o MockAPI real da equipe, as operações de criar, reservar, editar e cancelar foram conferidas diretamente na API.
-- **Lighthouse (celular, Acessibilidade):** 100 nas seis telas do plano, depois da correção do piscar (antes, 97 na landing e 96 em "Suas caixas"). Detalhes em `docs/acessibilidade.md`.
-- **Verificação de design (`sloplint` da Hallmark):** landing e telas abertas no navegador em 375, 1024, 1280, 1440 e 1920 px. Resultado final sem falhas nas regras fixas. Duas regras foram dispensadas com o motivo registrado no CSS: a altura do cartão de oferta, que é um botão grande de propósito, e o estado desativado do cartão da caixa.
-- **Revisão independente:** um agente sem o histórico da conversa revisou a página e apontou oito correções, todas aplicadas (etapa 5).
-- **Erros encontrados e ajustes:**
-
-| Problema | Como apareceu | O que foi feito |
-|---|---|---|
-| Foto de laranja na oferta de banana | capturas das telas | fotos por categoria retiradas das telas do app |
-| "Complete o gelo" em azul | leitura do documento de design | volta ao verde do LED |
-| Indicador do modo de desenvolvimento nas capturas | capturas das telas | capturas refeitas a partir do build de produção |
-| Imagens da landing sem carregar | `sloplint` no navegador | capturas incluídas antes do build; build refeito |
-| Texto encostado na borda a 375 px | `sloplint` no navegador | aspas penduradas da citação desligadas no celular |
-| Entrelinha apertada na assinatura do rodapé | `sloplint` no navegador | ajuste de 1,25 para 1,3 |
-| Caixa dentro de caixa no diálogo de exclusão | `sloplint` | botões do diálogo sem borda |
-| Testes esperando "Banca Mar Azul · 350 m" | `npm test` | texto e testes atualizados para "Banca Mar Azul, a 350 m" |
-| `setState` dentro de `useEffect` | `npm run lint` | substituição por `useSyncExternalStore` |
-| Download das fotos recusado (erro 429) | download no Wikimedia | tamanhos padrão de miniatura e identificação do cliente |
-| "Complete o gelo" ilegível no meio do piscar (contraste 1,5:1) | Lighthouse no site publicado | apenas o ponto de LED pisca; o texto fica firme |
-| Print de 360 px cortado | Chrome sem interface no Windows | prints refeitos com a emulação de celular do Chrome |
-
-## 5. Análise crítica
-
-- **Benefícios:**
-  - A Hallmark trouxe regras de design verificáveis: cada problema apareceu com local e motivo, e o `sloplint` confirmou a correção no navegador.
-  - As capturas das telas reais tornaram a landing fiel ao produto, sem ilustrações que não correspondem ao site.
-  - Dividir o trabalho em etapas curtas, com critério de pronto definido, prendeu cada erro à etapa em que surgiu.
-- **Limitações:**
-  - O código e os testes foram escritos pela IA; por isso, o estudo de cada parte por Henrique é parte da preparação para a apresentação.
-  - A revisão do hero antes do restante da página, também recomendada pela Hallmark, não foi feita; a revisão final apontou os pontos que ela teria identificado.
-  - Ficam como próximas conferências manuais: navegação somente com teclado, leitor de tela (NVDA), zoom de 200% e uso em celular físico.
-- **Dificuldades:**
-  - As fotos por categoria, que pareciam adequadas, não correspondiam aos produtos das ofertas e foram retiradas.
-  - O servidor local do build bloqueou a pasta de saída, e a verificação passou a usar outro caminho.
-  - A padronização dos textos sem ponto no meio exigiu atualizar também os testes que esperavam o texto anterior.
-
----
 
 ## Registro das sessões
 
@@ -257,6 +152,6 @@ Os registros abaixo estão separados por etapa de desenvolvimento. Cada sessão 
 - **Como conferimos:** contagem de componentes e telas comparada com as pastas; número de testes conferido com `npm test`.
 
 #### 19/11 · Padronização do registro de uso de IA (Claude Code)
-- **Pedido:** revisar o `prompts.md` e padronizá-lo no mesmo formato de organização do registro de Python da equipe (`computational-thinking-with-python`), com linguagem profissional e as sessões separadas por etapas de desenvolvimento.
-- **O que a IA fez com o direcionamento de Henrique:** reorganizou este arquivo nas cinco seções do registro de Python, agrupou as sessões em sete etapas, uniformizou os rótulos (Pedido, O que a IA fez com o direcionamento de Henrique, Como conferimos) e incluiu a sessão de 11/11, que não estava registrada.
-- **Como conferimos:** cada sessão comparada com o histórico de commits do repositório; números de testes, componentes, telas e notas do Lighthouse conferidos com o README, o `AI.md` e `docs/acessibilidade.md`.
+- **Pedido:** revisar o `AI.md` e o `prompts.md` e padronizá-los no mesmo formato de organização do registro de Python da equipe (`computational-thinking-with-python`), com linguagem profissional e as sessões separadas por etapas de desenvolvimento.
+- **O que a IA fez com o direcionamento de Henrique:** reorganizou o `AI.md` nas cinco partes pedidas pela disciplina (PDF, pág. 41), no mesmo formato do registro de Python, e deixou este arquivo com o registro completo dos pedidos, agrupados em sete etapas, com os rótulos Pedido, O que a IA fez com o direcionamento de Henrique e Como conferimos. Incluiu a sessão de 11/11, que não estava registrada.
+- **Como conferimos:** cada sessão comparada com o histórico de commits do repositório; as cinco partes do `AI.md` conferidas com a pág. 41 do PDF; números de testes, componentes, telas e notas do Lighthouse conferidos com o README e `docs/acessibilidade.md`.
