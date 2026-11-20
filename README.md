@@ -60,7 +60,7 @@ Prints em 360 px (celular) de cada perfil. Os das 11 rotas estão em [`docs/prin
 | Lógica separada da tela | regras em `src/domain/`, acesso aos dados em `src/services/`, estado em `src/hooks/`; as telas só chamam os hooks |
 | API externa com CRUD | MockAPI (criar, listar, editar e excluir ofertas e reservas) e ThingSpeak (leituras da caixa) |
 | Funcionalidade real, não só interface | anunciar, reservar, combinar retirada, cancelar, encerrar e excluir funcionam de ponta a ponta |
-| Uso de IA documentado | [`AI.md`](AI.md) (as cinco partes) e [`prompts.md`](prompts.md) (cada sessão) |
+| Uso de IA documentado | [`AI.md`](AI.md) na raiz, com as cinco partes pedidas (PDF, pág. 41) e o resumo por etapa; [`prompts.md`](prompts.md) com o pedido completo de cada sessão |
 
 A camada de regras, serviços e hooks (`src/domain`, `src/services`, `src/hooks`, `src/data`, `scripts/seed.mjs`) é da parte de Web Development (Daniel Gomes Torres). Ela veio do repositório [`web_development`](https://github.com/citizentech-1ESPU/web_development), commit `da0a395`, porque o PDF da GS define a parte de Web como "o JavaScript que dá vida à interface, no mesmo repositório do Front-end".
 
